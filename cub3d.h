@@ -10,6 +10,8 @@
 #include<fcntl.h>
 # include <string.h>
 #include<stdlib.h>
+# include <math.h>
+
 typedef struct s_cub
 {
     char **map;
@@ -20,6 +22,12 @@ typedef struct s_cub
     char *f;
     char *c;
     int count;
+    void *mlx;
+    void *window;
+    int height;
+    int width;
+    int x;
+    int y;
 }   t_cub;
 
 
@@ -42,4 +50,18 @@ void error_msg(char *msg);
 void check_RGB(char *rgb);
 void check_nb_rgb(char *s);
 void map_checking(char **map);
+int check_WE(char *s);
+int check_NO(char *s);
+int check_SO(char *s);
+int check_EA(char *s);
+int check_F(char *s);
+int check_C(char *s);
+int skip_space(char *s);
+void fill_textures(t_cub *cub,char *v);
+void check_path(char *s);
+void file_existance(int fd,char *s);
+void empty_line(char s);
+int check_empty_space(char *s);
+void empty_file(char *s);
+void ft_putstr_fd(char *s,int fd);
 #endif
