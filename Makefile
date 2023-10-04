@@ -4,13 +4,14 @@ RM		= rm -f
 NAME	= cub3d
 MLX		= minilibx-linux
 SRC		= main.c\
-			get_next_line.c\
-			get_next_line_utils.c\
-			libft_utils.c\
+			libft_utils/get_next_line.c\
+			libft_utils/get_next_line_utils.c\
+			libft_utils/libft_utils.c\
 			map_check.c\
 			fill_map.c\
 			textures_check.c\
 			error.c\
+			draw.c\
 
 OBJ	= $(SRC:.c=.o)
 

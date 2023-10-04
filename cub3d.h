@@ -11,6 +11,25 @@
 # include <string.h>
 #include<stdlib.h>
 # include <math.h>
+#include"minilibx-linux/mlx.h"
+#define WIDTH 360
+#define HEIGHT 360
+#define PI 3.14
+
+
+typedef struct s_player{
+    float x;
+    float y;
+
+} t_player;
+
+typedef struct  s_data {
+  void        *img;
+  char        *addr;
+  int         bits_per_pixel;
+  int         line_length;
+  int         endian;
+}               t_data;
 
 typedef struct s_cub
 {
@@ -24,11 +43,24 @@ typedef struct s_cub
     int count;
     void *mlx;
     void *window;
+    void *img;
     int height;
     int width;
     int x;
     int y;
+    int pos_x;
+    int pos_y;
+    int f_rgb;
+    int c_rgb;
+    t_player player;
+  char        *addr;
+  int         bits_per_pixel;
+  int         line_length;
+  int         endian;
+    t_data data;
 }   t_cub;
+
+
 
 
 char	*get_next_line(int fd);
@@ -47,7 +79,7 @@ char **join_all(char *s,char c);
 void check_textures_path(t_cub *cub);
 int	ft_atoi(char *str);
 void error_msg(char *msg);
-void check_RGB(char *rgb);
+void check_RGB(char *rgb,t_cub *cub);
 void check_nb_rgb(char *s);
 void map_checking(char **map);
 int check_WE(char *s);
@@ -64,4 +96,16 @@ void empty_line(char s);
 int check_empty_space(char *s);
 void empty_file(char *s);
 void ft_putstr_fd(char *s,int fd);
+void draw_angle(t_cub *cub,int x,int y);
+void draw_player_angle(t_cub *cub,int x,int y);
+void draw_twoline_represent_angle(t_cub *cub, int x, int y);
+void draw_lines(t_cub *cub, int x, int y);
+void draw_30_degree_angle(t_cub *cub, int x, int y);
+int rendring_minimap(t_cub *cub);
+void draw_wall(t_cub *cub,int x,int y);
+void draw_colone(t_cub *cub,int x,int y);
+void draw_line(t_cub *cub,int x,int y);
+void draw_empty(t_cub *cub,int x,int y);
+void draw_player_position(t_cub *cub,int x,int y);
+void draw_map(t_cub *cub);
 #endif

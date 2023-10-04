@@ -1,4 +1,4 @@
-#include"cub3d.h"
+#include"../cub3d.h"
 
 char	*ft_read_fd(int fd, char *s)
 {

@@ -76,7 +76,7 @@ void	ft_putstr_fd(char *s, int fd)
 }
 
 
-void check_RGB(char *rgb)
+void check_RGB(char *rgb,t_cub *cub)
 {
 	int i = 0;
 	int count = 0;
@@ -123,6 +123,8 @@ void check_RGB(char *rgb)
 	i =-1;
 	while(n[++i])
 		check_nb_rgb(n[i]);
+	i = 0;
+	cub->f_rgb =(ft_atoi(n[0]) << 16) | (ft_atoi(n[1]) << 8) | ft_atoi(n[2]);
 }
 void check_nb_rgb(char *s)
 {
@@ -164,7 +166,6 @@ void map_checking(char **map)
 	i = 0;
 	while(map[i])
 	{
-		j = 0;
 		j = skip_space(map[i]);
 		k = j;
 		//printf("++%s\n",map[i]);
