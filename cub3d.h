@@ -14,7 +14,9 @@
 #include"minilibx-linux/mlx.h"
 #define WIDTH 360
 #define HEIGHT 360
+#define SIZE 40
 #define PI 3.14
+#define ANGLE 30
 
 
 typedef struct s_player{
@@ -57,7 +59,8 @@ typedef struct s_cub
   int         bits_per_pixel;
   int         line_length;
   int         endian;
-    t_data data;
+  t_data data;
+  float orientation;
 }   t_cub;
 
 

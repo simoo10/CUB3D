@@ -41,14 +41,14 @@ void init_cub(t_cub *cub)
     cub->bits_per_pixel = 0;
     cub->line_length = 0;
     cub->endian = 0;
+    cub->orientation = 0;
 }
-void calculateNewPosition(float *x, float *y, float theta, float distance) {
-    // Convert the angle from degrees to radians
-    float radians = theta * PI / 180.0;
 
-    // Calculate the new position
-    *x += distance * cos(radians);
-    *y += distance * sin(radians);
+void calculateNewPosition(float *x, float *y, float ort, float dist) {
+    float radians = ort * PI / 180.0;
+
+    *x += dist * cos(radians);
+    *y += dist * sin(radians);
 }
 int move(int keycode,t_cub *cub)
 {
@@ -56,32 +56,49 @@ int move(int keycode,t_cub *cub)
     printf("-------keycode = %d------\n",keycode);
     if(keycode == 65307)
         exit(0);
-    if(keycode == 65362)
-    {
-    }
-    if(keycode == 65364)
-    {
-    }
     if(keycode == 65361)
     {
+        cub->orientation -= 15;
+        printf("orientation = %f\n",cub->orientation);
+        usleep(1000000);
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
     if(keycode == 65363)
     {
+        cub->orientation += 15;
+        printf("orientation = %f\n",cub->orientation);
+        usleep(1000000);
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
     if(keycode == 119)
     {
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,-1);
     }
     if(keycode == 115)
     {
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
     if(keycode == 97)
     {
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation + 90,1);
     }
     if(keycode == 100 && cub->player.x < 360)
     {
+        calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation - 90,1);
     }
 
     return(0);
+}
+void fill_orientation(char c,t_cub *cub)
+{
+    if(c=='N')
+        cub->orientation = 90;
+    if(c=='S')
+        cub->orientation = 270;
+    if(c=='W')
+        cub->orientation = 180;
+    if(c=='E')
+        cub->orientation = 0;
 }
 void init_player(t_cub *cub)
 {
@@ -95,10 +112,11 @@ void init_player(t_cub *cub)
         {
             if(cub->map[i][j]=='N' || cub->map[i][j]=='S' || cub->map[i][j]=='W' || cub->map[i][j]=='E')
             {
-                cub->player.x = (j*40);
+                cub->player.x = (j*SIZE);
                 printf("x = %f\n",cub->player.x);
-                cub->player.y = (i*40);
+                cub->player.y = (i*SIZE);
                 printf("y = %f\n",cub->player.y);
+                fill_orientation(cub->map[i][j],cub);
                 return;
             }
             j++;

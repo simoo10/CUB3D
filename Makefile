@@ -1,4 +1,4 @@
-FLAGS	= -Wall -Wextra -Werror #-g3 -fsanitize=address
+FLAGS	= -Wall -Wextra -Werror #
 LIBC	= ar -rc
 RM		= rm -f
 NAME	= cub3d
@@ -18,7 +18,7 @@ OBJ	= $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) -L $(MLX) -lmlx -lm -lbsd -lX11 -lXext
+	$(CC) $(CFLAGS)  -o $(NAME) $(OBJ) -L $(MLX) -lmlx -lm -lbsd -lX11 -lXext 
 
 clean:
 		$(RM) $(OBJ)
