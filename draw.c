@@ -23,58 +23,11 @@ void draw_line_orientation(t_cub *cub,int x,int y)
         i++;
     }
 }
-void mlx_line_put(void *mlx_ptr, void *win_ptr, int x0, int y0, int x1, int y1, int color)
-{
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx, sy;
 
-    if (x0 < x1) {
-        sx = 1;
-    } else {
-        sx = -1;
-    }
-
-    if (y0 < y1) {
-        sy = 1;
-    } else {
-        sy = -1;
-    }
-
-    int err = dx - dy;
-    int current_x = x0;
-    int current_y = y0;
-
-    while (current_x != x1 || current_y != y1) {
-        // Set the pixel at the current position to the specified color
-        mlx_pixel_put(mlx_ptr, win_ptr, current_x, current_y, color);
-
-        int err2 = 2 * err;
-
-        if (err2 > -dy) {
-            err -= dy;
-            current_x += sx;
-        }
-
-        if (err2 < dx) {
-            err += dx;
-            current_y += sy;
-        }
-    }
-}
-void drawRay(t_cub *cub, float playerX, float playerY, float orientationAngle) {
-    float rayX = playerX + cos(orientationAngle * PI / 180.0) * 100.0; 
-    float rayY = playerY + sin(orientationAngle * PI / 180.0) * 100.0; 
-
-    // Draw the ray
-   // mlx_line_put(mlx_ptr, win_ptr, playerX, playerY, rayX, rayY, 0xFFFFFF);
-    mlx_line_put(cub->mlx, cub->window, playerX, playerY, rayX, rayY, 0x00000);
-     // White color
-}
 int rendring_minimap(t_cub *cub)
 {
     mlx_clear_window(cub->mlx, cub->window);
-    draw_map(cub);drawRay(cub,cub->player.x,cub->player.y,cub->orientation);
+    draw_map(cub);
     draw_player_position(cub,cub->player.x,cub->player.y);
     mlx_put_image_to_window(cub->mlx, cub->window, cub->img, 0, 0);
     return(0);
@@ -204,4 +157,28 @@ void draw_map(t_cub *cub)
 // void draw_angle(t_cub *cub)
 // {
     
+// }
+// void draw_line1(void *mlx_ptr, void *win_ptr, int x1, int y1, int x2, int y2, int color) {
+//     int dx = abs(x2 - x1);
+//     int dy = abs(y2 - y1);
+//     int sx = (x1 < x2) ? 1 : -1;
+//     int sy = (y1 < y2) ? 1 : -1;
+//     int err = dx - dy;
+
+//     while (1) {
+//         mlx_pixel_put(mlx_ptr, win_ptr, x1, y1, color);
+
+//         if (x1 == x2 && y1 == y2)
+//             break;
+
+//         int e2 = 2 * err;
+//         if (e2 > -dy) {
+//             err -= dy;
+//             x1 += sx;
+//         }
+//         if (e2 < dx) {
+//             err += dx;
+//             y1 += sy;
+//         }
+//     }
 // }
