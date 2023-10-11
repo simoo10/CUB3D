@@ -2,7 +2,9 @@
 
 void error_msg(char *msg)
 {
+	
 	ft_putstr_fd("Error\n",2);
 	ft_putstr_fd(msg,2);
+	system("leaks cub3d");
 	exit(1);
 }

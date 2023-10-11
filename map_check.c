@@ -188,14 +188,25 @@ void map_checking(char **map)
 			}
 			j++;
 		}
-		
+		if(map[i][j]=='\0')
+		{
+			printf("[%d]\n",j-1);
+			if(map[i+1] && ft_strlen(map[i+1])>j-1)
+			{
+				if(map[i+1] && map[i+1][j-1]!='\0' && map[i+1][j-1]!='1')
+				{
+					if(map[i+1][j]!='1')
+						error_msg("=##===Oops!Map Has error!\n");
+				}
+			}
+		}
 		if(i==count2-1)
 		{	
 			j = 0;
 			while(map[i][j])
 			{
 				if(map[i][j]!='1' && map[i][j]!=' ')
-					error_msg("====Oops!Map Should surrounded by wall!\n");
+					error_msg("==---==Oops!Map Should surrounded by wall!\n");
 				j++;
 			}
 		}

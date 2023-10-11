@@ -1,5 +1,5 @@
 #include"cub3d.h"
-#include"minilibx-linux/mlx.h"
+
 
 void init_data(t_data *data)
 {
@@ -54,35 +54,35 @@ int move(int keycode,t_cub *cub)
 {
     printf("=========\n");
     printf("-------keycode = %d------\n",keycode);
-    if(keycode == 65307)
+    if(keycode == 53)
         exit(0);
-    if(keycode == 65361)
+    if(keycode == 124)
     {
         cub->orientation -= 15;
         printf("orientation = %f\n",cub->orientation);
         usleep(1000000);
        // calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
-    if(keycode == 65363)
+    if(keycode == 123)
     {
         cub->orientation += 15;
         printf("orientation = %f\n",cub->orientation);
-        usleep(1000000);
+
         //calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
-    if(keycode == 119)
+    if(keycode == 13)
     {
         calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,-1);
     }
-    if(keycode == 115)
+    if(keycode == 1)
     {
         calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
-    if(keycode == 97)
+    if(keycode == 0)
     {
         calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation + 90,1);
     }
-    if(keycode == 100 && cub->player.x < 360)
+    if(keycode == 2 && cub->player.x < 360)
     {
         calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation - 90,1);
     }
@@ -148,6 +148,7 @@ int main(int c,char **v)
     check_RGB(cub.c,&cub);
     check_RGB(cub.f, &cub);
     //printf("f = %d\n",cub.f_rgb);
+    
     cub.mlx = mlx_init();
     cub.window = mlx_new_window(cub.mlx, 360, 360, "CUb3D");
     
@@ -156,6 +157,7 @@ int main(int c,char **v)
                                  &cub.endian);
     printf("--------\n");
     init_player(&cub);
+
     // draw_map(&cub);
     mlx_hook(cub.window, 17, 0, (void *)exit, &cub);
     mlx_hook(cub.window, 2, 1L << 0, &move, &cub);

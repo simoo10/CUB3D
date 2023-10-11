@@ -11,7 +11,7 @@
 # include <string.h>
 #include<stdlib.h>
 # include <math.h>
-#include"minilibx-linux/mlx.h"
+#include"mlx.h"
 #define WIDTH 360
 #define HEIGHT 360
 #define SIZE 40
