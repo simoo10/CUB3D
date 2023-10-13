@@ -56,19 +56,19 @@ int move(int keycode,t_cub *cub)
     printf("-------keycode = %d------\n",keycode);
     if(keycode == 53)
         exit(0);
-    if(keycode == 124)
+    if(keycode == 123)
     {
         cub->orientation -= 15;
         printf("orientation = %f\n",cub->orientation);
         usleep(1000000);
-       // calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
+      // calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
-    if(keycode == 123)
+    if(keycode == 124)
     {
         cub->orientation += 15;
         printf("orientation = %f\n",cub->orientation);
 
-        //calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
+       // calculateNewPosition(&cub->player.x,&cub->player.y,cub->orientation,1);
     }
     if(keycode == 13)
     {
@@ -96,9 +96,9 @@ void fill_orientation(char c,t_cub *cub)
     if(c=='S')
         cub->orientation = 270;
     if(c=='W')
-        cub->orientation = 180;
-    if(c=='E')
         cub->orientation = 0;
+    if(c=='E')
+        cub->orientation = 180;
 }
 void init_player(t_cub *cub)
 {
